@@ -115,7 +115,7 @@ namespace Uppgift14_GarageV3.Controllers
         /// <returns>The action result.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Park([Bind("ParkedVehicleId,VehicleTypeID, RegistrationNumber,Color,Make,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public async Task<IActionResult> Park([Bind("ParkedVehicleId,VehicleTypeID, RegistrationNumber,Color,Make,Model")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
@@ -165,7 +165,7 @@ namespace Uppgift14_GarageV3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ParkedVehicleId,VehicleTypeID,RegistrationNumber,Color,Make,Model,NumberOfWheels,ArrivalTime")] ParkedVehicle parkedVehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("ParkedVehicleId,VehicleTypeID,RegistrationNumber,Color,Make,Model,ArrivalTime")] ParkedVehicle parkedVehicle)
         {
             if (id != parkedVehicle.ParkedVehicleId)
             {

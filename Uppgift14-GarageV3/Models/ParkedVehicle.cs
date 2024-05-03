@@ -17,9 +17,11 @@ namespace Uppgift14_GarageV3.Models
         public string Color { get; set; } = string.Empty;
         public string Make { get; set; } = string.Empty;
         public string Model { get; set; } = string.Empty;
-        [Range(1, 18)]
-        /// TODO: Retreive NumberOfWheels from VehicleType
-        public int NumberOfWheels { get; set; }
+
+        [NotMapped]
+        public int NumberOfWheels {
+            get => VehicleType?.NumberOfWheels ?? 0;
+        }
         public DateTime ArrivalTime { get; init; } = DateTime.Now;
 
         [NotMapped]

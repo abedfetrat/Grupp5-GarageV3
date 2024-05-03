@@ -18,11 +18,11 @@ namespace Uppgift14_GarageV3.Data
 
         // Representative examples of vehicles that may be parked in the garage
         private ParkedVehicle[] SeedVehicles => [
-            new ParkedVehicle { VehicleType = car       , RegistrationNumber = "ABC123", Color = "Beige", Make = "Toyota"       , Model = "Corolla", NumberOfWheels =  4, ArrivalTime = _today + new TimeSpan(08, 30, 00) },
-            new ParkedVehicle { VehicleType = car       , RegistrationNumber = "DEF456", Color = "Gray" , Make = "Volvo"        , Model = "EC40"   , NumberOfWheels =  4, ArrivalTime = _today + new TimeSpan(09, 15, 00) },
-            new ParkedVehicle { VehicleType = motorcycle, RegistrationNumber = "XYZ098", Color = "Blue" , Make = "Yamaha"       , Model = "R7"     , NumberOfWheels =  2, ArrivalTime = _today + new TimeSpan(09, 30, 00) },
-            new ParkedVehicle { VehicleType = car       , RegistrationNumber = "YYZ000", Color = "Red"  , Make = "Tesla"        , Model = "Model Y", NumberOfWheels =  4, ArrivalTime = _today + new TimeSpan(09, 45, 00) },
-            new ParkedVehicle { VehicleType = truck     , RegistrationNumber = "TUV765", Color = "White", Make = "Mercedes-Benz", Model = "Econic" , NumberOfWheels = 10, ArrivalTime = _today + new TimeSpan(10, 00, 00) },
+            new ParkedVehicle { VehicleType = car       , RegistrationNumber = "ABC123", Color = "Beige", Make = "Toyota"       , Model = "Corolla", ArrivalTime = _today + new TimeSpan(08, 30, 00) },
+            new ParkedVehicle { VehicleType = car       , RegistrationNumber = "DEF456", Color = "Gray" , Make = "Volvo"        , Model = "EC40"   , ArrivalTime = _today + new TimeSpan(09, 15, 00) },
+            new ParkedVehicle { VehicleType = motorcycle, RegistrationNumber = "XYZ098", Color = "Blue" , Make = "Yamaha"       , Model = "R7"     , ArrivalTime = _today + new TimeSpan(09, 30, 00) },
+            new ParkedVehicle { VehicleType = car       , RegistrationNumber = "YYZ000", Color = "Red"  , Make = "Tesla"        , Model = "Model Y", ArrivalTime = _today + new TimeSpan(09, 45, 00) },
+            new ParkedVehicle { VehicleType = truck     , RegistrationNumber = "TUV765", Color = "White", Make = "Mercedes-Benz", Model = "Econic" , ArrivalTime = _today + new TimeSpan(10, 00, 00) },
         ];
 
         // Based on the Pluralsight course (ASP.Net Core 6 Fundamentals)
