@@ -8,7 +8,10 @@ namespace Uppgift14_GarageV3.Models
     public class VehicleModelMetaData
     {
         [Display(Name = "Type of Vehicle", ShortName = "Type")]
-        public VehicleType VehicleType { get; set; }
+        public int VehicleTypeID { get; set; }
+
+        [Display(Name = "Type of Vehicle", ShortName = "Type")]
+        public VehicleType? VehicleType { get; set; }
 
         [Display(Name = "Registration Number", ShortName = "Reg. No.")]
         public string RegistrationNumber { get; init; } = string.Empty;

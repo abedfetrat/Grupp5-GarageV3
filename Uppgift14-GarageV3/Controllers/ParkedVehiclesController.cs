@@ -39,9 +39,9 @@ namespace Uppgift14_GarageV3.Controllers
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewBag.NoOfSpacesAvailable = await _garageContentService.NoOfSpacesAvailable();
-            
+
             ViewData["CurrentFilter"] = searchString;
-         
+
             ViewData["VehicleTypeSortParam"] = sortOrder == "type_asc" ? "type_desc" : "type_asc";
             ViewData["RegistrationSortParam"] = sortOrder == "registration_asc" ? "registration_desc" : "registration_asc";
 
@@ -83,8 +83,7 @@ namespace Uppgift14_GarageV3.Controllers
                 return NotFound();
             }
 
-            var parkedVehicle = await _context.ParkedVehicle
-                .FirstOrDefaultAsync(m => m.ParkedVehicleId == id);
+            var parkedVehicle = await _context.ParkedVehicle.FirstOrDefaultAsync(m => m.ParkedVehicleId == id);
             if (parkedVehicle == null)
             {
                 return NotFound();
@@ -99,6 +98,10 @@ namespace Uppgift14_GarageV3.Controllers
         /// <returns>The view for parking a vehicle.</returns>
         public async Task<IActionResult> Park()
         {
+            ViewBag.VehicleTypes = await _context.VehicleType
+                .Select(t => new SelectListItem(t.Name, t.ID.ToString()))
+                .ToListAsync();
+
             ViewBag.NoOfSpacesAvailable = await _garageContentService.NoOfSpacesAvailable();
 
             return View();
@@ -112,7 +115,7 @@ namespace Uppgift14_GarageV3.Controllers
         /// <returns>The action result.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Park([Bind("ParkedVehicleId,VehicleType,RegistrationNumber,Color,Make,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public async Task<IActionResult> Park([Bind("ParkedVehicleId,VehicleTypeID, RegistrationNumber,Color,Make,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
@@ -141,11 +144,19 @@ namespace Uppgift14_GarageV3.Controllers
                 return NotFound();
             }
 
-            var parkedVehicle = await _context.ParkedVehicle.FindAsync(id);
+            var parkedVehicle = await _context.ParkedVehicle.FirstOrDefaultAsync(v => v.ParkedVehicleId == id);
             if (parkedVehicle == null)
             {
                 return NotFound();
             }
+
+
+            var vehicleTypes = await _context.VehicleType
+                .Select(t => new SelectListItem(t.Name, t.ID.ToString(), t.ID == parkedVehicle.VehicleTypeID))
+                .ToListAsync();
+
+            ViewBag.VehicleTypes = vehicleTypes;
+
             return View(parkedVehicle);
         }
 
@@ -154,12 +165,15 @@ namespace Uppgift14_GarageV3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ParkedVehicleId,VehicleType,RegistrationNumber,Color,Make,Model,NumberOfWheels,ArrivalTime")] ParkedVehicle parkedVehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("ParkedVehicleId,VehicleTypeID,RegistrationNumber,Color,Make,Model,NumberOfWheels,ArrivalTime")] ParkedVehicle parkedVehicle)
         {
             if (id != parkedVehicle.ParkedVehicleId)
             {
                 return NotFound();
             }
+
+            Debug.WriteLine("VehicleTypeID: " + parkedVehicle.VehicleTypeID);
+            Debug.WriteLine("VehicleType: " + parkedVehicle.VehicleType);
 
             if (ModelState.IsValid)
             {

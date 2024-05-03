@@ -8,7 +8,8 @@ namespace Uppgift14_GarageV3.ViewModels
     public class VehicleSummaryViewModel
     {
         public int ParkedVehicleId { get; init; }
-        public VehicleType VehicleType { get; init; }
+        public int VehicleTypeID { get; init; }
+        public VehicleType? VehicleType { get; init; }
         public string RegistrationNumber { get; init; } = string.Empty;
         public DateTime ArrivalTime { get; init; }
 
@@ -25,6 +26,7 @@ namespace Uppgift14_GarageV3.ViewModels
         public VehicleSummaryViewModel(ParkedVehicle vehicle)
         {
             ParkedVehicleId = vehicle.ParkedVehicleId;
+            VehicleTypeID = vehicle.VehicleTypeID;
             VehicleType = vehicle.VehicleType;
             RegistrationNumber = vehicle.RegistrationNumber;
             ArrivalTime = vehicle.ArrivalTime;

@@ -68,7 +68,7 @@
                     {
                         <tr onclick="location.href = '@Url.Action("Details", "ParkedVehicles", new { id = item.ParkedVehicleId})'" style="cursor: pointer">
                             <td class="ps-3">
-                                @Html.DisplayFor(modelItem => item.VehicleType)
+                                @Html.DisplayTextFor(modelItem => item.VehicleType)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.RegistrationNumber)

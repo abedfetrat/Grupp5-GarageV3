@@ -16,9 +16,9 @@
                 <input type="hidden" asp-for="ParkedVehicleId" />
                 <!--  include a dropdown list for selecting the vehicle type -->
                 <div class="form-group mb-3">
-                    <label asp-for="VehicleType" class="control-label mb-1"></label>
-                    <select asp-for="VehicleType" asp-items="@(new SelectList(Enum.GetValues(typeof(VehicleType))))" class="form-select"></select>
-                    <span asp-validation-for="VehicleType" class="text-danger"></span>
+                    <label asp-for="VehicleTypeID" class="control-label mb-1"></label>
+                    <select asp-for="VehicleTypeID" asp-items="@ViewBag.VehicleTypes" class="form-select"></select>
+                    <span asp-validation-for="VehicleTypeID" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="RegistrationNumber" class="control-label mb-1"></label>
