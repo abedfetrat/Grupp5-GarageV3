@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Uppgift14_GarageV3.Data;
 using Uppgift14_GarageV3.Models;
 
-namespace Uppgift14_GarageV3
+namespace Uppgift14_GarageV3.Controllers
 {
     public class MembersController : Controller
     {
@@ -56,12 +56,23 @@ namespace Uppgift14_GarageV3
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MemberId,PersonNumber,FirstName,LastName,Age")] Member member)
         {
+            if (_context.Members.Any(m => m.PersonNumber == member.PersonNumber))
+            {
+                ModelState.AddModelError("PersonalNumber", "A member with this personal number already exists.");
+            }
+
+            if (!member.IsValid())
+            {
+                ModelState.AddModelError("", "Members must be over 18 years old and first name must not be the same as last name.");
+            }
+            
             if (ModelState.IsValid)
             {
-                _context.Add(member);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.Members.Add(member);
+                _context.SaveChanges();
+                return RedirectToAction("Index"); // Assuming you have an index or confirmation page
             }
+
             return View(member);
         }
 

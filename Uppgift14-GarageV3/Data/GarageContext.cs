@@ -16,6 +16,8 @@ namespace Uppgift14_GarageV3.Data
 
         public DbSet<ParkedVehicle> ParkedVehicle { get; set; } = default!;
         public DbSet<VehicleType> VehicleType { get; set; } = default!;
+        public DbSet<Member> Members { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
