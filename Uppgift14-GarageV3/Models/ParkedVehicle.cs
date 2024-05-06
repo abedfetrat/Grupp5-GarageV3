@@ -9,14 +9,19 @@ namespace Uppgift14_GarageV3.Models
     public class ParkedVehicle
     {
         public int ParkedVehicleId { get; set; }
-        public VehicleType VehicleType { get; set; }
+        public int VehicleTypeID { get; set; }
+        public VehicleType? VehicleType { get; set; }
+
         [StringLength(10)]
         public string RegistrationNumber { get; init; } = string.Empty;
         public string Color { get; set; } = string.Empty;
         public string Make { get; set; } = string.Empty;
         public string Model { get; set; } = string.Empty;
-        [Range(1, 18)]
-        public int NumberOfWheels { get; set; }
+
+        [NotMapped]
+        public int NumberOfWheels {
+            get => VehicleType?.NumberOfWheels ?? 0;
+        }
         public DateTime ArrivalTime { get; init; } = DateTime.Now;
 
         [NotMapped]
