@@ -22,7 +22,11 @@ namespace Uppgift14_GarageV3.Controllers
         // GET: Members
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Member.ToListAsync());
+            var members = _context.Members.ToList();
+            var sortedMembers = members.OrderBy(m => m.FirstName.Substring(0, Math.Min(2, m.FirstName.Length)))
+                                     .ToList();
+
+            return View(sortedMembers);
         }
 
         // GET: Members/Details/5
@@ -164,5 +168,6 @@ namespace Uppgift14_GarageV3.Controllers
         {
             return _context.Member.Any(e => e.MemberId == id);
         }
+        
     }
 }
