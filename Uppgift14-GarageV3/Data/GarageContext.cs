@@ -21,5 +21,6 @@ namespace Uppgift14_GarageV3.Data
         {
             modelBuilder.Entity<ParkedVehicle>().Navigation(e => e.VehicleType).AutoInclude();
         }
+        public DbSet<Uppgift14_GarageV3.Models.Member> Member { get; set; } = default!;
     }
 }
